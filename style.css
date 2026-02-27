@@ -1,0 +1,289 @@
+
+* {
+    font-family: 'Varela Round', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(-45deg, #1e1e2f, #302b63, #24243e, #0f0c29);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    color: white;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.app {
+    display: flex;
+    height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar h2 {
+    margin: 0 0 10px 0;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+}
+
+.menu-item input {
+    width: 60px;
+    padding: 5px;
+    border-radius: 6px;
+    border: none;
+    text-align: center;
+}
+
+.apply-btn {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: #6a5acd;
+    color: white;
+    transition: 0.3s ease;
+}
+
+.apply-btn:hover {
+    box-shadow: 0 0 15px #836fff;
+    transform: translateY(-2px);
+}
+
+/* MAIN AREA */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#timer {
+    font-size: 90px;
+    margin: 20px 0;
+    transition: 0.3s ease;
+}
+
+#timer:hover {
+    transform: scale(1.1);
+}
+
+button {
+    padding: 14px 28px;
+    margin: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #6a5acd;
+    color: white;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    box-shadow: 0 0 20px #836fff;
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: scale(0.9);
+}
+.streak-display {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+}
+/* Toggle Button */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 270px; /* pushes it outside sidebar */
+    z-index: 1000;
+    background: #6a5acd;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.sidebar.closed + .main .toggle-btn {
+    left: 20px;
+}
+
+.toggle-btn:hover {
+    box-shadow: 0 0 15px #836fff;
+}
+
+/* Sidebar animation */
+.sidebar {
+    transition: transform 0.3s ease;
+}
+
+.sidebar.closed {
+    transform: translateX(-100%);
+}
+/* STREAK ANIMATION */
+.streak-animate {
+    animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); color: orange; }
+    100% { transform: scale(1); }
+}
+
+.xp-display {
+    margin-top: 10px;
+    font-size: 16px;
+    opacity: 0.85;
+}
+.quote {
+    margin-top: 20px;
+    font-size: 18px;
+    opacity: 0.8;
+    text-align: center;
+    max-width: 400px;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.quote.fade {
+    opacity: 0;
+    transform: translateY(10px);
+}
+/* DEEP FOCUS MODE */
+body.deep-focus {
+    background: black !important;
+}
+
+.deep-focus .sidebar {
+    display: none;
+}
+
+.deep-focus .toggle-btn {
+    display: none;
+}
+
+.deep-focus .buttons button {
+    display: none;
+}
+
+.deep-focus #timer {
+    font-size: 120px;
+    color: red;
+    text-shadow: 0 0 25px red;
+}
+
+.focus-btn {
+    background: crimson;
+}
+
+.focus-warning {
+    position: fixed;
+    bottom: 30px;
+    background: red;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0.4; }
+}
+/* =========================
+   MOBILE RESPONSIVE FIX
+========================= */
+
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .app {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  /* Sidebar becomes top drawer */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100%;
+    z-index: 1000;
+    transition: 0.3s ease;
+  }
+
+  .sidebar.closed {
+    left: -100%;
+  }
+
+  .sidebar:not(.closed) {
+    left: 0;
+  }
+
+  .toggle-btn {
+    left: 20px !important;
+    top: 15px;
+    z-index: 1100;
+  }
+
+  .main {
+    width: 100%;
+    padding: 20px;
+    margin-left: 0;
+  }
+
+  #timer {
+    font-size: 48px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .buttons button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .focus-btn {
+    width: 100%;
+  }
+
+  input[type="number"] {
+    width: 100%;
+  }
+}

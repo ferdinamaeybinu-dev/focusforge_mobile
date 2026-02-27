@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FocusForge</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff3c00">
+</head>
+<body>
+
+<div class="app">
+
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button> 
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>⚙ Settings</h2>
+
+        <div class="menu-item">
+            
+            ⏳ Study
+            <input type="number" id="studyInput" value="25" min="1">
+        </div>
+
+        <div class="menu-item">
+            ☕ Break
+            <input type="number" id="breakInput" value="5" min="1">
+        </div>
+
+        <div class="menu-item streak-display">
+            🔥 <span id="streak">Streak: 0</span>
+        </div>
+
+<div class="xp-display">
+    <span id="xp">XP: 0 | Level: 0</span>
+
+        <button class="apply-btn" onclick="applyTime()">Apply Changes</button>
+    </div>
+    <div class="menu-item">
+    🔒 Focus
+    <input type="number" id="focusInput" value="45" min="1">
+</div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+        <h1>FocusForge</h1>
+        <h2 id="mode">Study Time</h2>
+        <div id="timer">25:00</div>
+<div id="quote" class="quote">
+    "Small steps every day."
+</div>
+        <div class="buttons">
+            <button onclick="startTimer()">Start</button>
+            <button onclick="pauseTimer()">Pause</button>
+            <button onclick="resetTimer()">Reset</button>
+            <button class="focus-btn" onclick="startDeepFocus()">🔒 Deep Focus Mode</button>
+        </div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
